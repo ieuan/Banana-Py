@@ -2,13 +2,13 @@ from setuptools import setup
 
 setup(
     name='banana_py',
-    version='0.1.2',
+    version='0.1.3',
     description='OAuth2 Backend for MailChimp',
     long_description='',
     keywords='django, mailchimp, oauth2',
-    author='Kenneth Love <kenneth@gigantuan.net>, Chris Jones <chris@brack3t.com>',
-    author_email='kenneth@gigantuan.net',
-    url='https://github.com/kennethlove/Banana-Py/',
+    author='Ieuan Lovett <ieuan.lovett@gmail.com>',
+    author_email='ieuan.lovett@gmail.com',
+    url='https://github.com/ieuan/Banana-Py/',
     license='BSD',
     packages=['banana_py'],
     zip_safe=False,
