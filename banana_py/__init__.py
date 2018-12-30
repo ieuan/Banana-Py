@@ -9,6 +9,8 @@ from django.conf import settings
 from django.template.defaultfilters import urlencode
 from django.core.exceptions import ImproperlyConfigured
 
+from importlib import import_module
+
 import oauth2 as oauth
 import simplejson
 
@@ -55,6 +57,17 @@ class Bananas_OAuth(object):
         response.update(simplejson.loads(content))
 
         return response
+
+    def callback(self, data):
+        moduleName = getattr(settings, 'MAILCHIMP_COMPLETE_CALLBACK_MODULE', None)
+        functionName = getattr(settings, 'MAILCHIMP_COMPLETE_CALLBACK_FUNCTION', None)
+
+        if moduleName != None and functionName != None:
+            module = import_module(moduleName)
+            function = getattr(module, functionName)
+            return function(data)
+
+        return data
 
     def authorize_url(self):
         return u'%s?response_type=code&client_id=%s&redirect_uri=%s' % (

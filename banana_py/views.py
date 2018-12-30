@@ -8,7 +8,8 @@ from banana_py import Bananas_OAuth
 class BananasCompleteView(TemplateView):
     template_name = 'banana_py/fail.html'
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
+
         try:
             code = request.GET['code']
         except KeyError:
@@ -17,5 +18,9 @@ class BananasCompleteView(TemplateView):
 
         bananas = Bananas_OAuth().authenticate(code)
         request.session['mailchimp_details'] = bananas
+        bananas['request'] = request.GET.dict()
+
+        # callback
+        Bananas_OAuth().callback(bananas)
 
         return HttpResponseRedirect(settings.MAILCHIMP_COMPLETE_URI)
