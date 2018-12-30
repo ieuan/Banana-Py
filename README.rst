@@ -57,7 +57,7 @@ In the template(s) where you want to display the authorize link::
 
 This will print out an HTML anchor tag with the appropriate link and the supplied text as the link text.
 
-Or to get just the url
+Or to get just the url::
 
     {% load banana_tags %}
     <a href="{% banana_auth_url %}"><button>Connect to MailChimp</button></a>
