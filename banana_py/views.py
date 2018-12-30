@@ -17,13 +17,19 @@ class BananasCompleteView(TemplateView):
             return self.render_to_response({'error': error})
 
         bananas = Bananas_OAuth().authenticate(code)
+
         request.session['mailchimp_details'] = bananas
         bananas['request'] = request.GET.dict()
 
         # callback
         data = Bananas_OAuth().callback(bananas)
 
-        if data['redirect']:
+        # Add success message
+        if 'messages' in data:
+            if 'success' in data['messages']:
+                messages.add_message(request, messages.SUCCESS, data['messages']['success'])
+
+        if 'redirect' in data:
             return HttpResponseRedirect(data['redirect'])
 
         return HttpResponseRedirect(settings.MAILCHIMP_COMPLETE_URI)

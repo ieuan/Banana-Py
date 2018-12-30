@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='banana_py',
-    version='0.1.3',
+    version='0.1.4',
     description='OAuth2 Backend for MailChimp',
     long_description='',
     keywords='django, mailchimp, oauth2',
