@@ -21,6 +21,9 @@ class BananasCompleteView(TemplateView):
         bananas['request'] = request.GET.dict()
 
         # callback
-        Bananas_OAuth().callback(bananas)
+        data = Bananas_OAuth().callback(bananas)
+
+        if data['redirect']:
+            return HttpResponseRedirect(data['redirect'])
 
         return HttpResponseRedirect(settings.MAILCHIMP_COMPLETE_URI)
