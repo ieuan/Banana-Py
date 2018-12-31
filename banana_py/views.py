@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 from banana_py import Bananas_OAuth
 

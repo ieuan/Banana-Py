@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='banana_py',
@@ -10,7 +10,7 @@ setup(
     author_email='ieuan.lovett@gmail.com',
     url='https://github.com/ieuan/Banana-Py/',
     license='BSD',
-    packages=['banana_py'],
+    packages=find_packages(),
     zip_safe=False,
     install_requires=['oauth2', 'simplejson', 'django'],
     include_package_data=True,
